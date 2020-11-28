@@ -22,6 +22,7 @@ public class CustomReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Collections.sort(lines);
         return lines;
     }

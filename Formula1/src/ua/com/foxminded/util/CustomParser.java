@@ -10,7 +10,7 @@ public class CustomParser {
     public static final Pattern RACER_ABBREVIATION = Pattern.compile("^[A-Z]{3}");
     public static final Pattern FULL_NAME = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
     public static final Pattern TEAM_NAME = Pattern.compile("([A-Z]+ )*[A-Z]+$");
-    public static final Pattern DATE_TIME = Pattern.compile("\\d{4}-\\d{2}-\\d{2}_\\d{2}:\\d{2}:\\d{2}\\.\\d{3}+");
+    public static final Pattern DATE_TIME = Pattern.compile("\\d+-\\d+-\\d+_\\d+:\\d+:\\d+\\.\\d+");
     private static final SimpleDateFormat SIMPLE_DATE
             = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
 
@@ -19,7 +19,7 @@ public class CustomParser {
 
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
-            builder.append(line.substring(matcher.start(), matcher.end()));
+            builder.append(line, matcher.start(), matcher.end());
         }
 
         return builder.toString();
