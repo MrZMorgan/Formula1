@@ -7,11 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CustomParser {
-    public static final Pattern SVF_PATTERN = Pattern.compile("^[A-Z]{3}");
-    public static final Pattern FULL_NAME_PATTERN = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
-    public static final Pattern TEAM_NAME_PATTERN = Pattern.compile("([A-Z]+ ){1,}[A-Z]+");
-    public static final Pattern DATE_TIME_PATTERN = Pattern.compile("(\\d|\\B|-|\\.|_|:)+");
-    private static final SimpleDateFormat SIMPLE_DATE_FORMAT
+    public static final Pattern RACER_ABBREVIATION = Pattern.compile("^[A-Z]{3}");
+    public static final Pattern FULL_NAME = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
+    public static final Pattern TEAM_NAME = Pattern.compile("([A-Z]+ )*[A-Z]+$");
+    public static final Pattern DATE_TIME = Pattern.compile("\\d{4}-\\d{2}-\\d{2}_\\d{2}:\\d{2}:\\d{2}\\.\\d{3}+");
+    private static final SimpleDateFormat SIMPLE_DATE
             = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
 
     public static String parseLine(Pattern pattern, String line) {
@@ -25,7 +25,7 @@ public class CustomParser {
         return builder.toString();
     }
 
-    public static Date parseDate(String stringDateRepresentation) throws ParseException {
-        return SIMPLE_DATE_FORMAT.parse(stringDateRepresentation);
+    public static Date parseDate(String line) throws ParseException {
+        return SIMPLE_DATE.parse(parseLine(DATE_TIME, line));
     }
 }

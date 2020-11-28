@@ -1,22 +1,54 @@
 package ua.com.foxminded;
 
+import ua.com.foxminded.racer.Racer;
+import ua.com.foxminded.racer.RacersTable;
+
+import java.io.File;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import static ua.com.foxminded.util.CustomParser.*;
+import static ua.com.foxminded.util.CustomReader.*;
 
 public class Solution {
     public static void main(String[] args) throws ParseException {
-//        File start = new File(Main.readLine());
-//        List<String> startLog = Main.readAndCollectLinesFomFile(start);
+        String startFile = readLine();
+//        File start = new File(readLine());
+//        List<String> startLog = readAndCollectLinesFomFile(start);
 
-//        File end = new File(Main.readLine());
-//        List<String> endLog = Main.readAndCollectLinesFomFile(end);
+        String endFile = readLine();
+//        File end = new File(readLine());
+//        List<String> endLog = readAndCollectLinesFomFile(end);
 
-//        File abbreviations = new File(Main.readLine());
-//        List<String> abbreviationsList = Main.readAndCollectLinesFomFile(abbreviations);
+        String abbreviationsFile = readLine();
+//        File abbreviations = new File(readLine());
+//        List<String> abbreviationsList = readAndCollectLinesFomFile(abbreviations);
 
-//        for (String s : abbreviationsList) {
-//            System.out.println(s);
+//        for (int i = 0; i < startLog.size(); i++) {
+//            Date startTime = parseDate(startLog.get(i));
+//            Date endTime = parseDate(endLog.get(i));
+//
+//            System.out.println(startTime + " | " + endTime);
+//
+//            DateFormat format = new SimpleDateFormat("mm:ss.SSS");
+//
+//            String lapTime = format.format(new Date(startTime.getTime() - endTime.getTime()));
+//            System.out.println(lapTime);
 //        }
+
+//        for (int i = 0; i < startLog.size(); i++) {
+//            System.out.println(startLog.get(i) + " | " + endLog.get(i) + " | " + abbreviationsList.get(i));
+//            System.out.println("------------------------------------------------------------------------------");
+//        }
+
+        RacersTable table = new RacersTable();
+        List<Racer> racers = table.createRacersList(startFile, endFile, abbreviationsFile);
+
+        for (Racer racer : racers) {
+            System.out.println(racer.toString());
+        }
     }
 }
