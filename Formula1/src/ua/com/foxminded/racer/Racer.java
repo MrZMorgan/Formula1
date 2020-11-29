@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
 import static ua.com.foxminded.util.CustomParser.*;
 import static ua.com.foxminded.util.CustomParser.parseDate;
 import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;

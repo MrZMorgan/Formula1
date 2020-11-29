@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Test;
-import ua.com.foxminded.facade.Facade;
 import ua.com.foxminded.util.CustomParser;
-
 import static ua.com.foxminded.util.CustomParser.*;
-
 import java.text.ParseException;
 
 import static org.junit.jupiter.api.Assertions.*;

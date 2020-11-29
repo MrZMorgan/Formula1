@@ -1,24 +1,26 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.util.CustomReader;
-
-import java.io.File;
-import java.util.LinkedList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomReaderTest {
+    private List<String> expectedLines;
 
+    @BeforeEach
+    void setUp() throws IOException {
+        expectedLines = Files.lines(Paths.get("test/filesfortests/end.log"))
+                .collect(Collectors.toList());
+    }
 
     @Test
     void readAndCollectLinesFomFile() {
-        List<String> expectedLines = new LinkedList<>();
-        expectedLines.add("MES2018-05-24_12:05:58.778");
-        expectedLines.add("RGH2018-05-24_12:06:27.441");
-        expectedLines.add("SPF2018-05-24_12:13:13.883");
-
-        List<String> actualLines = CustomReader.readAndCollectLinesFomFile("test/test.txt");
-
+        List<String> actualLines = CustomReader.readAndCollectLinesFomFile("test/filesfortests/end.log");
         assertEquals(expectedLines, actualLines);
     }
 }
