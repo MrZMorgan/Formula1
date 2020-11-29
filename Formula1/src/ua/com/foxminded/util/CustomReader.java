@@ -11,19 +11,12 @@ import java.util.stream.Collectors;
 public class CustomReader {
     public static List<String> readAndCollectLinesFomFile(String filename) {
         List<String> strings = new LinkedList<>();
+
         try {
             strings = Files.lines(Paths.get(filename)).collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        if (strings.size() == 0) {
-//            try {
-//                throw new IOException("File can't be empty ");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
         return strings;
     }

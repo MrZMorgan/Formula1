@@ -2,39 +2,28 @@ package ua.com.foxminded.facade;
 
 import ua.com.foxminded.interfaces.Formatable;
 import ua.com.foxminded.racer.Racer;
-import ua.com.foxminded.racer.RacersTable;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
-import static ua.com.foxminded.util.CustomReader.readLine;
+import static ua.com.foxminded.racer.Racer.generateUnformattedRacersList;
 
 public class Facade {
     private final Formatable formatable;
-    private static final String SEPARATOR = "-------------------------------------------------------------";
     public Facade(Formatable formatable) {
         this.formatable = formatable;
     }
 
-    public void printResultOfQualification() {
-        String startFileName = readLine();
-        String endFileName = readLine();
-        String abbreviationsFileName = readLine();
-
-        RacersTable table = new RacersTable();
+    public void printResultOfQualification(String startFileName,
+                                           String endFileName,
+                                           String abbreviationsFileName) {
         List<Racer> racers = new LinkedList<>();
         try {
-            racers = table.createRacersList(startFileName, endFileName, abbreviationsFileName);
+            racers = generateUnformattedRacersList(startFileName, endFileName, abbreviationsFileName);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        List<String> qualificationResults = formatable.formatRacerResultList(racers);
 
-        racers.sort(Racer::compareTo);
-
-        for (int i = 0; i < racers.size(); i++) {
-            if (i == 15) {
-                System.out.println(SEPARATOR);
-            }
-            System.out.println(formatable.formatResultLine(racers.get(i), i + 1));
-        }
+        qualificationResults.forEach(System.out::println);
     }
 }

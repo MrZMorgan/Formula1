@@ -1,10 +1,48 @@
 package ua.com.foxminded.racer;
 
+import java.text.ParseException;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+import static ua.com.foxminded.util.CustomParser.*;
+import static ua.com.foxminded.util.CustomParser.parseDate;
+import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;
+
 public class Racer implements Comparable<Racer> {
     private String racerAbbreviation;
     private String fullName;
     private String team;
     private long bestLapTime;
+
+    public static List<Racer> generateUnformattedRacersList(String start, String end, String abbreviations) throws ParseException {
+        List<Racer> racerList = new LinkedList<>();
+
+        List<String> startLogLines = readAndCollectLinesFomFile(start);
+        List<String> endLogLines = readAndCollectLinesFomFile(end);
+        List<String> abbreviationsLines = readAndCollectLinesFomFile(abbreviations);
+
+        Collections.sort(startLogLines);
+        Collections.sort(endLogLines);
+        Collections.sort(abbreviationsLines);
+
+        for (int i = 0; i < abbreviationsLines.size(); i++) {
+            Racer racer = new Racer();
+            racer.setRacerAbbreviation(parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
+            racer.setFullName(parseLine(FULL_NAME, abbreviationsLines.get(i)));
+            racer.setTeam(parseLine(TEAM_NAME, abbreviationsLines.get(i)));
+
+            long startTime = parseDate(startLogLines.get(i));
+            long endTime = parseDate(endLogLines.get(i));
+
+            long lapTime = endTime - startTime;
+            racer.setBestLapTime(lapTime);
+            racerList.add(racer);
+        }
+
+        racerList.sort(Racer::compareTo);
+        return racerList;
+    }
 
     public String getRacerAbbreviation() {
         return racerAbbreviation;
