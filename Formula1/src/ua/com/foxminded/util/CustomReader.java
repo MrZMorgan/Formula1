@@ -16,6 +16,15 @@ public class CustomReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (strings.size() == 0) {
+            try {
+                throw new IOException("File can't be empty ");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         return strings;
     }
 
