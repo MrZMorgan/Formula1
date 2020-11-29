@@ -4,29 +4,26 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CustomReader {
-    public static List<String> readAndCollectLinesFomFile(File file) {
-        List<String> lines = new LinkedList<>();
-        try (FileReader fileReader = new FileReader(file);
-             BufferedReader bufferedReader = new BufferedReader(fileReader);){
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                lines.add(line);
-                line = bufferedReader.readLine();
-            }
+    public static List<String> readAndCollectLinesFomFile(String filename) {
+        List<String> strings = new LinkedList<>();
+        try {
+            strings = Files.lines(Paths.get(filename)).collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Collections.sort(lines);
-        return lines;
+        return strings;
     }
-
     public static String readLine() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();

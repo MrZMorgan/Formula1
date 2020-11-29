@@ -10,9 +10,9 @@ public class RacersTable {
     public List<Racer> createRacersList(String start, String end, String abbreviations) throws ParseException {
         List<Racer> racerList = new LinkedList<>();
 
-        List<String> startLogLines = readAndCollectLinesFomFile(new File(start));
-        List<String> endLogLines = readAndCollectLinesFomFile(new File(end));
-        List<String> abbreviationsLines = readAndCollectLinesFomFile(new File(abbreviations));
+        List<String> startLogLines = readAndCollectLinesFomFile(start);
+        List<String> endLogLines = readAndCollectLinesFomFile(end);
+        List<String> abbreviationsLines = readAndCollectLinesFomFile(abbreviations);
 
         for (int i = 0; i < abbreviationsLines.size(); i++) {
             Racer racer = new Racer();
