@@ -13,6 +13,10 @@ public class RacersTable {
         List<String> endLogLines = readAndCollectLinesFomFile(end);
         List<String> abbreviationsLines = readAndCollectLinesFomFile(abbreviations);
 
+        Collections.sort(startLogLines);
+        Collections.sort(endLogLines);
+        Collections.sort(abbreviationsLines);
+
         for (int i = 0; i < abbreviationsLines.size(); i++) {
             Racer racer = new Racer();
             racer.setRacerAbbreviation(parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
