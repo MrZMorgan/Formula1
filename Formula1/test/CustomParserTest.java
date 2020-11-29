@@ -1,7 +1,6 @@
-package ua.com.foxminded.util;
-
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.facade.Facade;
+import ua.com.foxminded.util.CustomParser;
 
 import static ua.com.foxminded.util.CustomParser.*;
 
