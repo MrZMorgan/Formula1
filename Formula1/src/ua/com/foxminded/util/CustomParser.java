@@ -25,7 +25,7 @@ public class CustomParser {
         return builder.toString();
     }
 
-    public static Date parseDate(String line) throws ParseException {
-        return SIMPLE_DATE.parse(parseLine(DATE_TIME, line));
+    public static long parseDate(String line) throws ParseException {
+        return SIMPLE_DATE.parse(parseLine(DATE_TIME, line)).getTime();
     }
 }

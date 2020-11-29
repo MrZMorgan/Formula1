@@ -3,11 +3,9 @@ package ua.com.foxminded.facade;
 import ua.com.foxminded.interfaces.Formatable;
 import ua.com.foxminded.racer.Racer;
 import ua.com.foxminded.racer.RacersTable;
-
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
-
 import static ua.com.foxminded.util.CustomReader.readLine;
 
 public class Facade {

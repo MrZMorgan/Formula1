@@ -1,6 +1,5 @@
 package ua.com.foxminded.racer;
 
-import java.io.File;
 import java.text.ParseException;
 import java.util.*;
 import static ua.com.foxminded.util.CustomReader.*;
@@ -20,10 +19,10 @@ public class RacersTable {
             racer.setFullName(parseLine(FULL_NAME, abbreviationsLines.get(i)));
             racer.setTeam(parseLine(TEAM_NAME, abbreviationsLines.get(i)));
 
-            Date startTime = parseDate(startLogLines.get(i));
-            Date endTime = parseDate(endLogLines.get(i));
+            long startTime = parseDate(startLogLines.get(i));
+            long endTime = parseDate(endLogLines.get(i));
 
-            long lapTime = endTime.getTime() - startTime.getTime();
+            long lapTime = endTime - startTime;
             racer.setBestLapTime(lapTime);
             racerList.add(racer);
         }
