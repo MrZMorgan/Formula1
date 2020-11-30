@@ -2,13 +2,16 @@ package ua.com.foxminded.racer;
 
 import java.text.ParseException;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static ua.com.foxminded.util.CustomParser.*;
 import static ua.com.foxminded.util.CustomParser.parseDate;
 import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;
 
-public class Racer implements Comparable<Racer> {
+public class Racer {
     private String racerAbbreviation;
     private String fullName;
     private String team;
@@ -39,7 +42,9 @@ public class Racer implements Comparable<Racer> {
             racerList.add(racer);
         }
 
-        racerList.sort(Racer::compareTo);
+        racerList = racerList.stream()
+                .sorted(Comparator.comparing(Racer::getBestLapTime))
+                .collect(Collectors.toList());
         return racerList;
     }
 
@@ -73,26 +78,5 @@ public class Racer implements Comparable<Racer> {
 
     public void setBestLapTime(long bestLapTime) {
         this.bestLapTime = bestLapTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Racer{" +
-                "racerAbbreviation='" + racerAbbreviation + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", team='" + team + '\'' +
-                ", bestLapTime='" + bestLapTime + '\'' +
-                '}';
-    }
-
-    @Override
-    public int compareTo(Racer racer) {
-        if (this.bestLapTime > racer.getBestLapTime()) {
-            return 1;
-        } else if (this.bestLapTime < racer.getBestLapTime()) {
-            return -1;
-        } else {
-            return 1;
-        }
     }
 }
