@@ -25,6 +25,4 @@ public class RaceFacade {
         List<String> qualificationResults = formatable.formatRacerResultList(racers);
         qualificationResults.forEach(System.out::println);
     }
-
-
 }
