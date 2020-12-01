@@ -1,12 +1,5 @@
 package ua.com.foxminded.racer;
 
-import java.text.ParseException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Racer {
     private String racerAbbreviation;
     private String fullName;
