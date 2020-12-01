@@ -17,38 +17,6 @@ public class Racer {
     private String team;
     private long bestLapTime;
 
-    public static List<Racer> generateUnformattedRacersList(String start, String end, String abbreviations) throws ParseException {
-        List<Racer> racerList = new LinkedList<>();
-
-        List<String> startLogLines = readAndCollectLinesFomFile(start);
-        List<String> endLogLines = readAndCollectLinesFomFile(end);
-        List<String> abbreviationsLines = readAndCollectLinesFomFile(abbreviations);
-
-        Collections.sort(startLogLines);
-        Collections.sort(endLogLines);
-        Collections.sort(abbreviationsLines);
-
-        for (int i = 0; i < abbreviationsLines.size(); i++) {
-            Racer racer = new Racer();
-            racer.setRacerAbbreviation(parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
-            racer.setFullName(parseLine(FULL_NAME, abbreviationsLines.get(i)));
-            racer.setTeam(parseLine(TEAM_NAME, abbreviationsLines.get(i)));
-
-            long startTime = parseDate(startLogLines.get(i));
-            long endTime = parseDate(endLogLines.get(i));
-
-            long lapTime = endTime - startTime;
-            racer.setBestLapTime(lapTime);
-            racerList.add(racer);
-        }
-
-        racerList = racerList.stream()
-                .sorted(Comparator.comparing(Racer::getBestLapTime))
-                .collect(Collectors.toList());
-
-        return racerList;
-    }
-
     public String getRacerAbbreviation() {
         return racerAbbreviation;
     }

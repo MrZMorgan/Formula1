@@ -5,7 +5,6 @@ import ua.com.foxminded.racer.Racer;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
-import static ua.com.foxminded.racer.Racer.generateUnformattedRacersList;
 
 public class RaceFacade {
     private final Formatable formatable;
@@ -18,7 +17,7 @@ public class RaceFacade {
                                            String abbreviationsFileName) {
         List<Racer> racers = new LinkedList<>();
         try {
-            racers = generateUnformattedRacersList(startFileName, endFileName, abbreviationsFileName);
+            racers = formatable.generateUnformattedRacersList(startFileName, endFileName, abbreviationsFileName);
         } catch (ParseException e) {
             e.printStackTrace();
         }

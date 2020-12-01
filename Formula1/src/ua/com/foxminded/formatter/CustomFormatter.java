@@ -3,10 +3,14 @@ package ua.com.foxminded.formatter;
 import ua.com.foxminded.interfaces.Formatable;
 import ua.com.foxminded.racer.Racer;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static ua.com.foxminded.util.CustomParser.*;
+import static ua.com.foxminded.util.CustomParser.parseDate;
+import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;
 
 public class CustomFormatter implements Formatable {
     private static final DateFormat FORMAT = new SimpleDateFormat("mm:ss.SSS");
@@ -72,6 +76,38 @@ public class CustomFormatter implements Formatable {
 
         qualificationResults.add(15, qualificationLine);
         return qualificationResults;
+    }
+
+    public List<Racer> generateUnformattedRacersList(String start, String end, String abbreviations) throws ParseException {
+        List<Racer> racerList = new LinkedList<>();
+
+        List<String> startLogLines = readAndCollectLinesFomFile(start);
+        List<String> endLogLines = readAndCollectLinesFomFile(end);
+        List<String> abbreviationsLines = readAndCollectLinesFomFile(abbreviations);
+
+        Collections.sort(startLogLines);
+        Collections.sort(endLogLines);
+        Collections.sort(abbreviationsLines);
+
+        for (int i = 0; i < abbreviationsLines.size(); i++) {
+            Racer racer = new Racer();
+            racer.setRacerAbbreviation(parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
+            racer.setFullName(parseLine(FULL_NAME, abbreviationsLines.get(i)));
+            racer.setTeam(parseLine(TEAM_NAME, abbreviationsLines.get(i)));
+
+            long startTime = parseDate(startLogLines.get(i));
+            long endTime = parseDate(endLogLines.get(i));
+
+            long lapTime = endTime - startTime;
+            racer.setBestLapTime(lapTime);
+            racerList.add(racer);
+        }
+
+        racerList = racerList.stream()
+                .sorted(Comparator.comparing(Racer::getBestLapTime))
+                .collect(Collectors.toList());
+
+        return racerList;
     }
 
     private String createQualificationLine(List<String> qualificationResults) {
