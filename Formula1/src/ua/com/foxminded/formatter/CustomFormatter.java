@@ -78,7 +78,9 @@ public class CustomFormatter implements Formatable {
         return qualificationResults;
     }
 
-    public List<Racer> generateUnformattedRacersList(String start, String end, String abbreviations) throws ParseException {
+    public List<Racer> generateUnformattedRacersList(String start,
+                                                     String end,
+                                                     String abbreviations) throws ParseException {
         List<Racer> racerList = new LinkedList<>();
 
         List<String> startLogLines = readAndCollectLinesFomFile(start);

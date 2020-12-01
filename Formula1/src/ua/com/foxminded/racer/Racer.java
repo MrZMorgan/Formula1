@@ -7,10 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ua.com.foxminded.util.CustomParser.*;
-import static ua.com.foxminded.util.CustomParser.parseDate;
-import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;
-
 public class Racer {
     private String racerAbbreviation;
     private String fullName;

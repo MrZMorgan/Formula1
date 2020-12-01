@@ -1,8 +1,15 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
+import static org.mockito.Mockito.*;
+import ua.com.foxminded.facade.RaceFacade;
 import ua.com.foxminded.interfaces.Formatable;
 import ua.com.foxminded.racer.Racer;
 import ua.com.foxminded.formatter.CustomFormatter;
+
+import java.text.ParseException;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +29,7 @@ class CustomFormatterTest {
     }
 
     @Test
-    void formatResultLine() {
+    void shouldFormatResultLine() {
         int racerPosition = 2;
         int maxLengthOfRacerPosition = 2;
         int maxLengthOfFullName = 16;

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class RaceFacade {
     private final Formatable formatable;
+
     public RaceFacade(Formatable formatable) {
         this.formatable = formatable;
     }
@@ -22,7 +23,8 @@ public class RaceFacade {
             e.printStackTrace();
         }
         List<String> qualificationResults = formatable.formatRacerResultList(racers);
-
         qualificationResults.forEach(System.out::println);
     }
+
+
 }
