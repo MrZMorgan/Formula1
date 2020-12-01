@@ -7,9 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 import static ua.com.foxminded.racer.Racer.generateUnformattedRacersList;
 
-public class Facade {
+public class RaceFacade {
     private final Formatable formatable;
-    public Facade(Formatable formatable) {
+    public RaceFacade(Formatable formatable) {
         this.formatable = formatable;
     }
 

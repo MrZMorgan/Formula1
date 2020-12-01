@@ -10,7 +10,9 @@ import java.util.List;
 
 public class CustomFormatter implements Formatable {
     private static final DateFormat FORMAT = new SimpleDateFormat("mm:ss.SSS");
-    private static final String SEPARATOR = "-";
+    private static final String HORIZONTAL_SEPARATOR = "-";
+    private static final String VERTICAL_SEPARATOR = "|";
+    private static final String SPACE = " ";
 
     public String formatResultLine(Racer racer,
                                    int racerPosition,
@@ -23,21 +25,22 @@ public class CustomFormatter implements Formatable {
         String lapTime = FORMAT.format(new Date(bestLapTime));
 
         StringBuilder formattedLine = new StringBuilder();
+
         formattedLine.append(racerPosition);
         for (int i = 0; i < maxLengthOfRacerPosition - String.valueOf(racerPosition).length(); i++) {
-            formattedLine.append(" ");
+            formattedLine.append(SPACE);
         }
-        formattedLine.append(" | ");
+        formattedLine.append(SPACE + VERTICAL_SEPARATOR + SPACE);
         formattedLine.append(fullName);
         for (int i = 0; i < maxLengthOfFullName - fullName.length(); i++) {
-            formattedLine.append(" ");
+            formattedLine.append(SPACE);
         }
-        formattedLine.append(" | ");
+        formattedLine.append(SPACE + VERTICAL_SEPARATOR + SPACE);
         formattedLine.append(teamName);
         for (int i = 0; i < maxLengthOfTeamName - teamName.length(); i++) {
-            formattedLine.append(" ");
+            formattedLine.append(SPACE);
         }
-        formattedLine.append(" | ");
+        formattedLine.append(SPACE + VERTICAL_SEPARATOR + SPACE);
         formattedLine.append(lapTime);
         return formattedLine.toString();
     }
@@ -82,7 +85,7 @@ public class CustomFormatter implements Formatable {
 
         StringBuilder qualificationLine = new StringBuilder();
         for (int i = 0; i < maxLengthOfResultLine; i++) {
-            qualificationLine.append(SEPARATOR);
+            qualificationLine.append(HORIZONTAL_SEPARATOR);
         }
         return qualificationLine.toString();
     }

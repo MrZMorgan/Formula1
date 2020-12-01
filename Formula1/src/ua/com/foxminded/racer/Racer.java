@@ -45,6 +45,7 @@ public class Racer {
         racerList = racerList.stream()
                 .sorted(Comparator.comparing(Racer::getBestLapTime))
                 .collect(Collectors.toList());
+
         return racerList;
     }
 
