@@ -13,6 +13,7 @@ import static ua.com.foxminded.util.CustomParser.parseDate;
 import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;
 
 public class CustomFormatter implements Formatable {
+
     private static final DateFormat FORMAT = new SimpleDateFormat("mm:ss.SSS");
     private static final String HORIZONTAL_SEPARATOR = "-";
     private static final String VERTICAL_SEPARATOR = "|";

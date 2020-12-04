@@ -6,6 +6,7 @@ import java.text.ParseException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomParserTest {
+
     private static final String INPUT_STRING_FOR_PARSE_LINE = "DRR_Daniel Ricciardo_RED BULL RACING TAG HEUER";
     private static final String EXPECTED_TEAM_NAME = "RED BULL RACING TAG HEUER";
     private static final String EXPECTED_ABBREVIATION = "DRR";

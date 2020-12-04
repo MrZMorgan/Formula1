@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.List;
 
 public interface Formatable {
+
     String formatResultLine(Racer racer,
                             int racerPosition,
                             int maxLengthOfRacerPosition,

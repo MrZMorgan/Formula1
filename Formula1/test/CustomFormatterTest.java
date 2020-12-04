@@ -7,6 +7,7 @@ import ua.com.foxminded.formatter.CustomFormatter;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomFormatterTest {
+
     private Racer racer;
     private Formatable formatter;
     private final static String ACTUAL_RESULT = "2  | Daniel Ricciardo | RED BULL RACING TAG HEUER | 01:12.013";

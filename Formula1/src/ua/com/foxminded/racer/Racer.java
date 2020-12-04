@@ -1,6 +1,7 @@
 package ua.com.foxminded.racer;
 
 public class Racer {
+
     private String racerAbbreviation;
     private String fullName;
     private String team;

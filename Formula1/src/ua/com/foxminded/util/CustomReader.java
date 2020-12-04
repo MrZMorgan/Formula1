@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class CustomReader {
+
     public static List<String> readAndCollectLinesFomFile(String filename) {
         List<String> strings = new LinkedList<>();
 

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CustomParser {
+
     public static final Pattern RACER_ABBREVIATION = Pattern.compile("^[A-Z]{3}");
     public static final Pattern FULL_NAME = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
     public static final Pattern TEAM_NAME = Pattern.compile("([A-Z]+ )*[A-Z]+$");

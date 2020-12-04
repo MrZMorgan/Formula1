@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RaceFacade {
+
     private final Formatable formatable;
 
     public RaceFacade(Formatable formatable) {

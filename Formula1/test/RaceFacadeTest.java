@@ -12,6 +12,7 @@ import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.*;
 
 class RaceFacadeTest {
+
     private Formatable formatterMock;
     private RaceFacade facade;
     private final static String START_LOG_FILE_NAME = "test/filesfortests/start.log";
