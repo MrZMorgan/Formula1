@@ -2,7 +2,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import ua.com.foxminded.facade.RaceFacade;
 import ua.com.foxminded.interfaces.Formatable;
+import ua.com.foxminded.interfaces.Parseble;
+import ua.com.foxminded.interfaces.Readeble;
 import ua.com.foxminded.racer.Racer;
+import ua.com.foxminded.util.parser.CustomParser;
+import ua.com.foxminded.util.reader.CustomReader;
 
 import java.text.ParseException;
 import java.util.LinkedList;
@@ -14,6 +18,8 @@ import static org.mockito.Mockito.*;
 class RaceFacadeTest {
 
     private Formatable formatterMock;
+    private Readeble readerMock;
+    private Parseble parserMock;
     private RaceFacade facade;
     private final static String START_LOG_FILE_NAME = "test/filesfortests/start.log";
     private final static String END_LOG_FILE_NAME = "test/filesfortests/end.log";
@@ -21,21 +27,23 @@ class RaceFacadeTest {
 
     @Test
     void shouldGenerateUnformattedRacersList() throws ParseException {
-//        formatterMock = mock(Formatable.class);
-//        facade = new RaceFacade(formatterMock);
-//
-//        List<Racer> racers = createListOfRacersForTest();
-//
-//        when(formatterMock.generateUnformattedRacersList(START_LOG_FILE_NAME,
-//                END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME)).thenReturn(racers);
-//
-//        facade.printResultOfQualification(START_LOG_FILE_NAME, END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME);
-//
-//        InOrder inOrder = inOrder(formatterMock);
-//
-//        inOrder.verify(formatterMock).generateUnformattedRacersList(START_LOG_FILE_NAME,
-//                END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME);
-//        inOrder.verify(formatterMock).formatRacerResultList(anyList());
+        formatterMock = mock(Formatable.class);
+        readerMock = mock(CustomReader.class);
+        parserMock = mock(CustomParser.class);
+        facade = new RaceFacade(formatterMock, readerMock, parserMock);
+
+        List<Racer> racers = createListOfRacersForTest();
+
+        when(formatterMock.generateUnformattedRacersList(START_LOG_FILE_NAME,
+                END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME, readerMock, parserMock)).thenReturn(racers);
+
+        facade.printResultOfQualification(START_LOG_FILE_NAME, END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME);
+
+        InOrder inOrder = inOrder(formatterMock);
+
+        inOrder.verify(formatterMock).generateUnformattedRacersList(START_LOG_FILE_NAME,
+                END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME, readerMock, parserMock);
+        inOrder.verify(formatterMock).formatRacerResultList(anyList());
     }
 
     List<Racer> createListOfRacersForTest() {
