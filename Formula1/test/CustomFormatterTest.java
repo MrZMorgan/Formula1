@@ -2,7 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.interfaces.Formatable;
 import ua.com.foxminded.racer.Racer;
-import ua.com.foxminded.formatter.CustomFormatter;
+import ua.com.foxminded.util.formatter.CustomFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 

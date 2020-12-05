@@ -1,16 +1,17 @@
-package ua.com.foxminded.util;
+package ua.com.foxminded.util.reader;
+
+import ua.com.foxminded.interfaces.Readeble;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class CustomReader {
+public class CustomReader implements Readeble {
 
-    public static List<String> readAndCollectLinesFomFile(String filename) {
+    public List<String> readAndCollectLinesFomFile(String filename) {
         List<String> strings = new LinkedList<>();
 
         try {
@@ -20,10 +21,5 @@ public class CustomReader {
         }
 
         return strings;
-    }
-
-    public static String readLine() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
     }
 }

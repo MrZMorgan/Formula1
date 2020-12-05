@@ -1,16 +1,17 @@
-package ua.com.foxminded.formatter;
+package ua.com.foxminded.util.formatter;
 
 import ua.com.foxminded.interfaces.Formatable;
+import ua.com.foxminded.interfaces.Parseble;
+import ua.com.foxminded.interfaces.Readeble;
 import ua.com.foxminded.racer.Racer;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static ua.com.foxminded.util.CustomParser.*;
-import static ua.com.foxminded.util.CustomParser.parseDate;
-import static ua.com.foxminded.util.CustomReader.readAndCollectLinesFomFile;
+import static ua.com.foxminded.util.parser.CustomParser.*;
 
 public class CustomFormatter implements Formatable {
 
@@ -81,12 +82,14 @@ public class CustomFormatter implements Formatable {
 
     public List<Racer> generateUnformattedRacersList(String start,
                                                      String end,
-                                                     String abbreviations) throws ParseException {
+                                                     String abbreviations,
+                                                     Readeble reader,
+                                                     Parseble parser) throws ParseException {
         List<Racer> racerList = new LinkedList<>();
 
-        List<String> startLogLines = readAndCollectLinesFomFile(start);
-        List<String> endLogLines = readAndCollectLinesFomFile(end);
-        List<String> abbreviationsLines = readAndCollectLinesFomFile(abbreviations);
+        List<String> startLogLines = reader.readAndCollectLinesFomFile(start);
+        List<String> endLogLines = reader.readAndCollectLinesFomFile(end);
+        List<String> abbreviationsLines = reader.readAndCollectLinesFomFile(abbreviations);
 
         Collections.sort(startLogLines);
         Collections.sort(endLogLines);
@@ -94,12 +97,12 @@ public class CustomFormatter implements Formatable {
 
         for (int i = 0; i < abbreviationsLines.size(); i++) {
             Racer racer = new Racer();
-            racer.setRacerAbbreviation(parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
-            racer.setFullName(parseLine(FULL_NAME, abbreviationsLines.get(i)));
-            racer.setTeam(parseLine(TEAM_NAME, abbreviationsLines.get(i)));
+            racer.setRacerAbbreviation(parser.parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
+            racer.setFullName(parser.parseLine(FULL_NAME, abbreviationsLines.get(i)));
+            racer.setTeam(parser.parseLine(TEAM_NAME, abbreviationsLines.get(i)));
 
-            long startTime = parseDate(startLogLines.get(i));
-            long endTime = parseDate(endLogLines.get(i));
+            long startTime = parser.parseDate(startLogLines.get(i));
+            long endTime = parser.parseDate(endLogLines.get(i));
 
             long lapTime = endTime - startTime;
             racer.setBestLapTime(lapTime);

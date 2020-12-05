@@ -1,11 +1,13 @@
-package ua.com.foxminded.util;
+package ua.com.foxminded.util.parser;
+
+import ua.com.foxminded.interfaces.Parseble;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CustomParser {
+public class CustomParser implements Parseble {
 
     public static final Pattern RACER_ABBREVIATION = Pattern.compile("^[A-Z]{3}");
     public static final Pattern FULL_NAME = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
@@ -14,7 +16,7 @@ public class CustomParser {
     private static final SimpleDateFormat SIMPLE_DATE
             = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
 
-    public static String parseLine(Pattern pattern, String line) {
+    public String parseLine(Pattern pattern, String line) {
         StringBuilder builder = new StringBuilder();
 
         Matcher matcher = pattern.matcher(line);
@@ -25,7 +27,7 @@ public class CustomParser {
         return builder.toString();
     }
 
-    public static long parseDate(String line) throws ParseException {
+    public long parseDate(String line) throws ParseException {
         return SIMPLE_DATE.parse(parseLine(DATE_TIME, line)).getTime();
     }
 }

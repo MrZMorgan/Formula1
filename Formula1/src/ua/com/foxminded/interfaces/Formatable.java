@@ -15,5 +15,9 @@ public interface Formatable {
 
     List<String> formatRacerResultList(List<Racer> racers);
 
-    List<Racer> generateUnformattedRacersList(String start, String end, String abbreviations) throws ParseException;
+    List<Racer> generateUnformattedRacersList(String start,
+                                              String end,
+                                              String abbreviations,
+                                              Readeble reader,
+                                              Parseble parser) throws ParseException;
 }
