@@ -3,9 +3,7 @@ import org.junit.jupiter.api.Test;
 import ua.com.foxminded.interfaces.Parseble;
 import ua.com.foxminded.util.parser.CustomParser;
 import static ua.com.foxminded.util.parser.CustomParser.*;
-
 import java.text.ParseException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomParserTest {
