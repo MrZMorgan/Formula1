@@ -1,8 +1,7 @@
 package ua.com.foxminded.util.formatter;
 
 import ua.com.foxminded.interfaces.Formatter;
-import ua.com.foxminded.interfaces.Parseble;
-import ua.com.foxminded.interfaces.Readeble;
+import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.racer.Racer;
 
 import java.text.DateFormat;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static ua.com.foxminded.util.parser.CustomParser.*;
 
-public class CustomFormatter implements Formatter {
+public class TopRacersFormatter implements Formatter {
 
     private static final DateFormat FORMAT = new SimpleDateFormat("mm:ss.SSS");
     private static final String HORIZONTAL_SEPARATOR = "-";
@@ -83,7 +82,7 @@ public class CustomFormatter implements Formatter {
     public List<Racer> generateUnformattedRacersList(List<String> startLogLines,
                                                      List<String> endLogLines,
                                                      List<String> abbreviationsLines,
-                                                     Parseble parser) throws ParseException {
+                                                     Parser parser) throws ParseException {
         List<Racer> racerList = new LinkedList<>();
 
         Collections.sort(startLogLines);

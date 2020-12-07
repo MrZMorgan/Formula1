@@ -1,13 +1,13 @@
 package ua.com.foxminded.util.parser;
 
-import ua.com.foxminded.interfaces.Parseble;
+import ua.com.foxminded.interfaces.Parser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CustomParser implements Parseble {
+public class CustomParser implements Parser {
 
     public static final Pattern RACER_ABBREVIATION = Pattern.compile("^[A-Z]{3}");
     public static final Pattern FULL_NAME = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");

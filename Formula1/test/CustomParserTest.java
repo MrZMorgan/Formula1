@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.foxminded.interfaces.Parseble;
+import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.util.parser.CustomParser;
 import static ua.com.foxminded.util.parser.CustomParser.*;
 import java.text.ParseException;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CustomParserTest {
 
-    private Parseble parser;
+    private Parser parser;
 
     private static final String INPUT_STRING_FOR_PARSE_LINE = "DRR_Daniel Ricciardo_RED BULL RACING TAG HEUER";
     private static final String EXPECTED_TEAM_NAME = "RED BULL RACING TAG HEUER";

@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.foxminded.interfaces.Readeble;
+import ua.com.foxminded.interfaces.Reader;
 import ua.com.foxminded.util.reader.CustomReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomReaderTest {
-    Readeble reader;
+    Reader reader;
 
     private List<String> expectedLines;
 

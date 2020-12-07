@@ -1,8 +1,8 @@
 package ua.com.foxminded.facade;
 
 import ua.com.foxminded.interfaces.Formatter;
-import ua.com.foxminded.interfaces.Parseble;
-import ua.com.foxminded.interfaces.Readeble;
+import ua.com.foxminded.interfaces.Parser;
+import ua.com.foxminded.interfaces.Reader;
 import ua.com.foxminded.racer.Racer;
 
 import java.text.ParseException;
@@ -12,10 +12,10 @@ import java.util.List;
 public class RaceFacade {
 
     private final Formatter formatter;
-    private final Readeble reader;
-    private final Parseble parser;
+    private final Reader reader;
+    private final Parser parser;
 
-    public RaceFacade(Formatter formatter, Readeble reader, Parseble parser) {
+    public RaceFacade(Formatter formatter, Reader reader, Parser parser) {
         this.formatter = formatter;
         this.reader = reader;
         this.parser = parser;

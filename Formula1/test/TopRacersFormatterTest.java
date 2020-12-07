@@ -1,14 +1,14 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.foxminded.interfaces.Formatable;
+import ua.com.foxminded.interfaces.Formatter;
 import ua.com.foxminded.racer.Racer;
-import ua.com.foxminded.util.formatter.CustomFormatter;
+import ua.com.foxminded.util.formatter.TopRacersFormatter;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomFormatterTest {
+class TopRacersFormatterTest {
 
     private Racer racer;
-    private Formatable formatter;
+    private Formatter formatter;
     private final static String ACTUAL_RESULT = "2  | Daniel Ricciardo | RED BULL RACING TAG HEUER | 01:12.013";
 
     @BeforeEach
@@ -18,7 +18,7 @@ class CustomFormatterTest {
         racer.setFullName("Daniel Ricciardo");
         racer.setTeam("RED BULL RACING TAG HEUER");
         racer.setBestLapTime(72013L);
-        formatter = new CustomFormatter();
+        formatter = new TopRacersFormatter();
     }
 
     @Test

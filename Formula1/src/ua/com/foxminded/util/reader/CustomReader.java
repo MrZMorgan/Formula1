@@ -1,6 +1,6 @@
 package ua.com.foxminded.util.reader;
 
-import ua.com.foxminded.interfaces.Readeble;
+import ua.com.foxminded.interfaces.Reader;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CustomReader implements Readeble {
+public class CustomReader implements Reader {
 
     public List<String> readAndCollectLinesFomFile(String filename) {
         List<String> strings = new LinkedList<>();

@@ -18,5 +18,5 @@ public interface Formatter {
     List<Racer> generateUnformattedRacersList(List<String> startLogLines,
                                               List<String> endLogLines,
                                               List<String> abbreviationsLines,
-                                              Parseble parser) throws ParseException;
+                                              Parser parser) throws ParseException;
 }
