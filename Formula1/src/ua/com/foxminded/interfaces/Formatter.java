@@ -5,7 +5,7 @@ import ua.com.foxminded.racer.Racer;
 import java.text.ParseException;
 import java.util.List;
 
-public interface Formatable {
+public interface Formatter {
 
     String formatResultLine(Racer racer,
                             int racerPosition,
@@ -15,9 +15,8 @@ public interface Formatable {
 
     List<String> formatRacerResultList(List<Racer> racers);
 
-    List<Racer> generateUnformattedRacersList(String start,
-                                              String end,
-                                              String abbreviations,
-                                              Readeble reader,
+    List<Racer> generateUnformattedRacersList(List<String> startLogLines,
+                                              List<String> endLogLines,
+                                              List<String> abbreviationsLines,
                                               Parseble parser) throws ParseException;
 }

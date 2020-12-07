@@ -1,6 +1,6 @@
 package ua.com.foxminded.util.formatter;
 
-import ua.com.foxminded.interfaces.Formatable;
+import ua.com.foxminded.interfaces.Formatter;
 import ua.com.foxminded.interfaces.Parseble;
 import ua.com.foxminded.interfaces.Readeble;
 import ua.com.foxminded.racer.Racer;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import static ua.com.foxminded.util.parser.CustomParser.*;
 
-public class CustomFormatter implements Formatable {
+public class CustomFormatter implements Formatter {
 
     private static final DateFormat FORMAT = new SimpleDateFormat("mm:ss.SSS");
     private static final String HORIZONTAL_SEPARATOR = "-";
@@ -80,16 +80,11 @@ public class CustomFormatter implements Formatable {
         return qualificationResults;
     }
 
-    public List<Racer> generateUnformattedRacersList(String start,
-                                                     String end,
-                                                     String abbreviations,
-                                                     Readeble reader,
+    public List<Racer> generateUnformattedRacersList(List<String> startLogLines,
+                                                     List<String> endLogLines,
+                                                     List<String> abbreviationsLines,
                                                      Parseble parser) throws ParseException {
         List<Racer> racerList = new LinkedList<>();
-
-        List<String> startLogLines = reader.readAndCollectLinesFomFile(start);
-        List<String> endLogLines = reader.readAndCollectLinesFomFile(end);
-        List<String> abbreviationsLines = reader.readAndCollectLinesFomFile(abbreviations);
 
         Collections.sort(startLogLines);
         Collections.sort(endLogLines);
