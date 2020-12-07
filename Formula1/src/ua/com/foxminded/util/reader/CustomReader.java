@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 
 public class CustomReader implements Reader {
 
-    public List<String> readAndCollectLinesFomFile(String filename) {
+    @Override
+    public List<String> read(String filename) {
         List<String> strings = new LinkedList<>();
 
         try {

@@ -1,11 +1,17 @@
 package ua.com.foxminded.util.parser;
 
 import ua.com.foxminded.interfaces.Parser;
+import ua.com.foxminded.racer.Racer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CustomParser implements Parser {
 
@@ -16,7 +22,8 @@ public class CustomParser implements Parser {
     private static final SimpleDateFormat SIMPLE_DATE
             = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
 
-    public String parseLine(Pattern pattern, String line) {
+    @Override
+    public String parse(Pattern pattern, String line) {
         StringBuilder builder = new StringBuilder();
 
         Matcher matcher = pattern.matcher(line);
@@ -27,7 +34,40 @@ public class CustomParser implements Parser {
         return builder.toString();
     }
 
-    public long parseDate(String line) throws ParseException {
-        return SIMPLE_DATE.parse(parseLine(DATE_TIME, line)).getTime();
+    @Override
+    public long parse(String line) throws ParseException {
+        String date = parse(DATE_TIME, line);
+        return SIMPLE_DATE.parse(date).getTime();
+    }
+
+    @Override
+    public List<Racer> parse(List<String> startLogLines,
+                             List<String> endLogLines,
+                             List<String> abbreviationsLines) throws ParseException {
+        List<Racer> racerList = new LinkedList<>();
+
+        Collections.sort(startLogLines);
+        Collections.sort(endLogLines);
+        Collections.sort(abbreviationsLines);
+
+        for (int i = 0; i < abbreviationsLines.size(); i++) {
+            Racer racer = new Racer();
+            racer.setRacerAbbreviation(parse(RACER_ABBREVIATION, abbreviationsLines.get(i)));
+            racer.setFullName(parse(FULL_NAME, abbreviationsLines.get(i)));
+            racer.setTeam(parse(TEAM_NAME, abbreviationsLines.get(i)));
+
+            long startTime = parse(startLogLines.get(i));
+            long endTime = parse(endLogLines.get(i));
+
+            long lapTime = endTime - startTime;
+            racer.setBestLapTime(lapTime);
+            racerList.add(racer);
+        }
+
+        racerList = racerList.stream()
+                .sorted(Comparator.comparing(Racer::getBestLapTime))
+                .collect(Collectors.toList());
+
+        return racerList;
     }
 }

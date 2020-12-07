@@ -25,17 +25,17 @@ public class RaceFacade {
                                            String endFileName,
                                            String abbreviationsFileName) {
 
-        List<String> startLogLines = reader.readAndCollectLinesFomFile(startFileName);
-        List<String> endLogLines = reader.readAndCollectLinesFomFile(endFileName);
-        List<String> abbreviationsLines = reader.readAndCollectLinesFomFile(abbreviationsFileName);
+        List<String> startLogLines = reader.read(startFileName);
+        List<String> endLogLines = reader.read(endFileName);
+        List<String> abbreviationsLines = reader.read(abbreviationsFileName);
 
         List<Racer> racers = new LinkedList<>();
         try {
-            racers = formatter.generateUnformattedRacersList(startLogLines, endLogLines, abbreviationsLines, parser);
+            racers = parser.parse(startLogLines, endLogLines, abbreviationsLines);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        List<String> qualificationResults = formatter.formatRacerResultList(racers);
+        List<String> qualificationResults = formatter.format(racers);
         qualificationResults.forEach(System.out::println);
     }
 }

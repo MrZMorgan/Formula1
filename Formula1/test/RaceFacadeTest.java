@@ -38,34 +38,32 @@ class RaceFacadeTest {
         end = linesFromEndLog();
         abbreviation = linesFromAbbreviationFile();
 
-        when(readerMock.readAndCollectLinesFomFile(START_LOG_FILE_NAME)).thenReturn(start);
-        when(readerMock.readAndCollectLinesFomFile(END_LOG_FILE_NAME)).thenReturn(end);
-        when(readerMock.readAndCollectLinesFomFile(ABBREVIATIONS_FILE_NAME)).thenReturn(abbreviation);
-        when(formatterMock.generateUnformattedRacersList(start, end, abbreviation, parserMock))
-                .thenReturn(racers);
+        when(readerMock.read(START_LOG_FILE_NAME)).thenReturn(start);
+        when(readerMock.read(END_LOG_FILE_NAME)).thenReturn(end);
+        when(readerMock.read(ABBREVIATIONS_FILE_NAME)).thenReturn(abbreviation);
+        when(parserMock.parse(start, end, abbreviation)).thenReturn(racers);
 
         facade.printResultOfQualification(START_LOG_FILE_NAME, END_LOG_FILE_NAME, ABBREVIATIONS_FILE_NAME);
     }
 
     @Test
     void testNumbersOfInvocation() throws ParseException {
-        verify(readerMock, times(1)).readAndCollectLinesFomFile(START_LOG_FILE_NAME);
-        verify(readerMock, times(1)).readAndCollectLinesFomFile(END_LOG_FILE_NAME);
-        verify(readerMock, times(1)).readAndCollectLinesFomFile(ABBREVIATIONS_FILE_NAME);
-        verify(formatterMock, times(1)).generateUnformattedRacersList(start,
-                end, abbreviation, parserMock);
-        verify(formatterMock, times(1)).formatRacerResultList(racers);
+        verify(readerMock, times(1)).read(START_LOG_FILE_NAME);
+        verify(readerMock, times(1)).read(END_LOG_FILE_NAME);
+        verify(readerMock, times(1)).read(ABBREVIATIONS_FILE_NAME);
+        verify(parserMock, times(1)).parse(start, end, abbreviation);
+        verify(formatterMock, times(1)).format(racers);
     }
 
     @Test
     void orderInteractionTest() throws ParseException {
         InOrder inOrder = inOrder(formatterMock, parserMock, readerMock);
 
-        inOrder.verify(readerMock).readAndCollectLinesFomFile(START_LOG_FILE_NAME);
-        inOrder.verify(readerMock).readAndCollectLinesFomFile(END_LOG_FILE_NAME);
-        inOrder.verify(readerMock).readAndCollectLinesFomFile(ABBREVIATIONS_FILE_NAME);
-        inOrder.verify(formatterMock).generateUnformattedRacersList(start, end, abbreviation, parserMock);
-        inOrder.verify(formatterMock).formatRacerResultList(racers);
+        inOrder.verify(readerMock).read(START_LOG_FILE_NAME);
+        inOrder.verify(readerMock).read(END_LOG_FILE_NAME);
+        inOrder.verify(readerMock).read(ABBREVIATIONS_FILE_NAME);
+        inOrder.verify(parserMock).parse(start, end, abbreviation);
+        inOrder.verify(formatterMock).format(racers);
     }
 
     List<String> lineFromStartLog() {

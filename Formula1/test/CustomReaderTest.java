@@ -24,7 +24,7 @@ class CustomReaderTest {
 
     @Test
     void readAndCollectLinesFomFile() {
-        List<String> actualLines = reader.readAndCollectLinesFomFile("test/filesfortests/end.log");
+        List<String> actualLines = reader.read("test/filesfortests/end.log");
         assertEquals(expectedLines, actualLines);
     }
 }

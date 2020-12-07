@@ -1,16 +1,11 @@
 package ua.com.foxminded.util.formatter;
 
 import ua.com.foxminded.interfaces.Formatter;
-import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.racer.Racer;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static ua.com.foxminded.util.parser.CustomParser.*;
 
 public class TopRacersFormatter implements Formatter {
 
@@ -19,11 +14,12 @@ public class TopRacersFormatter implements Formatter {
     private static final String VERTICAL_SEPARATOR = "|";
     private static final String SPACE = " ";
 
-    public String formatResultLine(Racer racer,
-                                   int racerPosition,
-                                   int maxLengthOfRacerPosition,
-                                   int maxLengthOfFullName,
-                                   int maxLengthOfTeamName) {
+    @Override
+    public String format(Racer racer,
+                         int racerPosition,
+                         int maxLengthOfRacerPosition,
+                         int maxLengthOfFullName,
+                         int maxLengthOfTeamName) {
         String fullName = racer.getFullName();
         String teamName = racer.getTeam();
         long bestLapTime = racer.getBestLapTime();
@@ -50,7 +46,8 @@ public class TopRacersFormatter implements Formatter {
         return formattedLine.toString();
     }
 
-    public List<String> formatRacerResultList(List<Racer> racers) {
+    @Override
+    public List<String> format(List<Racer> racers) {
         List<String> qualificationResults = new LinkedList<>();
         int maxLengthOfRacerPosition = String.valueOf(racers.size() + 1).length();
         int maxLengthOfFullName = 0;
@@ -69,7 +66,7 @@ public class TopRacersFormatter implements Formatter {
         }
 
         for (int i = 0; i < racers.size(); i++) {
-            qualificationResults.add(formatResultLine(racers.get(i), i + 1,
+            qualificationResults.add(format(racers.get(i), i + 1,
                     maxLengthOfRacerPosition, maxLengthOfFullName, maxLengthOfTeamName));
         }
 
@@ -80,37 +77,6 @@ public class TopRacersFormatter implements Formatter {
         }
 
         return qualificationResults;
-    }
-
-    public List<Racer> generateUnformattedRacersList(List<String> startLogLines,
-                                                     List<String> endLogLines,
-                                                     List<String> abbreviationsLines,
-                                                     Parser parser) throws ParseException {
-        List<Racer> racerList = new LinkedList<>();
-
-        Collections.sort(startLogLines);
-        Collections.sort(endLogLines);
-        Collections.sort(abbreviationsLines);
-
-        for (int i = 0; i < abbreviationsLines.size(); i++) {
-            Racer racer = new Racer();
-            racer.setRacerAbbreviation(parser.parseLine(RACER_ABBREVIATION, abbreviationsLines.get(i)));
-            racer.setFullName(parser.parseLine(FULL_NAME, abbreviationsLines.get(i)));
-            racer.setTeam(parser.parseLine(TEAM_NAME, abbreviationsLines.get(i)));
-
-            long startTime = parser.parseDate(startLogLines.get(i));
-            long endTime = parser.parseDate(endLogLines.get(i));
-
-            long lapTime = endTime - startTime;
-            racer.setBestLapTime(lapTime);
-            racerList.add(racer);
-        }
-
-        racerList = racerList.stream()
-                .sorted(Comparator.comparing(Racer::getBestLapTime))
-                .collect(Collectors.toList());
-
-        return racerList;
     }
 
     private String createQualificationLine(List<String> qualificationResults) {
