@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public interface Parser {
     String parse(Pattern pattern, String line);
-    long parse(String line) throws ParseException;
     List<Racer> parse(List<String> startLogLines,
                       List<String> endLogLines,
                       List<String> abbreviationsLines) throws ParseException;

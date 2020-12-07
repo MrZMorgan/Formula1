@@ -41,16 +41,10 @@ class CustomParserTest {
     }
 
     @Test
-    void shouldParseDate() throws ParseException {
-        long actualParseResult = parser.parse(INPUT_STRING_FOR_PARSE_DATE);
+    void shouldParseDate() {
+        String actualParseResult = parser.parse(DATE_TIME, INPUT_STRING_FOR_PARSE_DATE);
 
         assertEquals(EXPECTED_PARSE_RESULT, actualParseResult);
-    }
-
-    @Test
-    void shouldThrowException() {
-        assertThrows(ParseException.class,
-                () -> parser.parse(LINE_FOR_TRY_PARSE_EXCEPTION));
     }
 
     @Test

@@ -35,12 +35,6 @@ public class CustomParser implements Parser {
     }
 
     @Override
-    public long parse(String line) throws ParseException {
-        String date = parse(DATE_TIME, line);
-        return SIMPLE_DATE.parse(date).getTime();
-    }
-
-    @Override
     public List<Racer> parse(List<String> startLogLines,
                              List<String> endLogLines,
                              List<String> abbreviationsLines) throws ParseException {
@@ -56,10 +50,10 @@ public class CustomParser implements Parser {
             racer.setFullName(parse(FULL_NAME, abbreviationsLines.get(i)));
             racer.setTeam(parse(TEAM_NAME, abbreviationsLines.get(i)));
 
-            long startTime = parse(startLogLines.get(i));
-            long endTime = parse(endLogLines.get(i));
+            String startTime = parse(DATE_TIME, startLogLines.get(i));
+            String endTime = parse(DATE_TIME, endLogLines.get(i));
 
-            long lapTime = endTime - startTime;
+            long lapTime = SIMPLE_DATE.parse(endTime).getTime() - SIMPLE_DATE.parse(startTime).getTime();
             racer.setBestLapTime(lapTime);
             racerList.add(racer);
         }
