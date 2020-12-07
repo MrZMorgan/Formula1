@@ -2,7 +2,6 @@ package ua.com.foxminded.util.parser;
 
 import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.racer.Racer;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -22,7 +21,6 @@ public class CustomParser implements Parser {
     private static final SimpleDateFormat SIMPLE_DATE
             = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
 
-    @Override
     public String parse(Pattern pattern, String line) {
         StringBuilder builder = new StringBuilder();
 

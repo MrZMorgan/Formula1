@@ -1,7 +1,6 @@
 package ua.com.foxminded.util.reader;
 
 import ua.com.foxminded.interfaces.Reader;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

@@ -1,11 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.com.foxminded.interfaces.Formatter;
-import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.racer.Racer;
 import ua.com.foxminded.util.formatter.TopRacersFormatter;
-import ua.com.foxminded.util.parser.CustomParser;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TopRacersFormatterTest {
 
-    private Formatter formatter;
+    TopRacersFormatter formatter;
     private final static String ACTUAL_RESULT = "2  | Daniel Ricciardo | RED BULL RACING TAG HEUER | 01:12.013";
 
     @BeforeEach
@@ -34,7 +30,7 @@ class TopRacersFormatterTest {
         int maxLengthOfFullName = 16;
         int maxLengthOfTeamName = 25;
 
-        String expectedResult = formatter.format(racer, racerPosition,
+        String expectedResult = formatter.formatRacerResult(racer, racerPosition,
                 maxLengthOfRacerPosition, maxLengthOfFullName, maxLengthOfTeamName);
         assertEquals(expectedResult, ACTUAL_RESULT);
     }

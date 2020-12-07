@@ -4,7 +4,6 @@ import ua.com.foxminded.interfaces.Formatter;
 import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.interfaces.Reader;
 import ua.com.foxminded.racer.Racer;
-
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;

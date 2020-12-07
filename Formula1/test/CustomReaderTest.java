@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomReaderTest {
-    Reader reader;
+
+    private Reader reader;
 
     private List<String> expectedLines;
 

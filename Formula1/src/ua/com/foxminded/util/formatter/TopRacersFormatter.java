@@ -2,7 +2,6 @@ package ua.com.foxminded.util.formatter;
 
 import ua.com.foxminded.interfaces.Formatter;
 import ua.com.foxminded.racer.Racer;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -14,8 +13,7 @@ public class TopRacersFormatter implements Formatter {
     private static final String VERTICAL_SEPARATOR = "|";
     private static final String SPACE = " ";
 
-    @Override
-    public String format(Racer racer,
+    public String formatRacerResult(Racer racer,
                          int racerPosition,
                          int maxLengthOfRacerPosition,
                          int maxLengthOfFullName,
@@ -66,7 +64,7 @@ public class TopRacersFormatter implements Formatter {
         }
 
         for (int i = 0; i < racers.size(); i++) {
-            qualificationResults.add(format(racers.get(i), i + 1,
+            qualificationResults.add(formatRacerResult(racers.get(i), i + 1,
                     maxLengthOfRacerPosition, maxLengthOfFullName, maxLengthOfTeamName));
         }
 
