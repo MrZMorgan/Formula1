@@ -14,7 +14,6 @@ class CustomParserTest {
     private static final String EXPECTED_TEAM_NAME = "RED BULL RACING TAG HEUER";
     private static final String EXPECTED_ABBREVIATION = "DRR";
     private static final String EXPECTED_FULL_NAME = "Daniel Ricciardo";
-
     private static final String INPUT_STRING_FOR_PARSE_DATE = "SVF2018-05-24_12:02:58.917";
     private static final long EXPECTED_PARSE_RESULT = 1527152578917L;
     private static final String LINE_FOR_TRY_PARSE_EXCEPTION = "line for try parse exception";

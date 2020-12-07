@@ -1,5 +1,7 @@
 package ua.com.foxminded.racer;
 
+import java.util.Objects;
+
 public class Racer {
 
     private String racerAbbreviation;
@@ -37,5 +39,21 @@ public class Racer {
 
     public void setBestLapTime(long bestLapTime) {
         this.bestLapTime = bestLapTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Racer)) return false;
+        Racer racer = (Racer) o;
+        return getBestLapTime() == racer.getBestLapTime() &&
+                getRacerAbbreviation().equals(racer.getRacerAbbreviation()) &&
+                getFullName().equals(racer.getFullName()) &&
+                getTeam().equals(racer.getTeam());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRacerAbbreviation(), getFullName(), getTeam(), getBestLapTime());
     }
 }

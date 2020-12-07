@@ -75,7 +75,10 @@ public class TopRacersFormatter implements Formatter {
 
         String qualificationLine = createQualificationLine(qualificationResults);
 
-        qualificationResults.add(15, qualificationLine);
+        if (racers.size() > 15) {
+            qualificationResults.add(15, qualificationLine);
+        }
+
         return qualificationResults;
     }
 
