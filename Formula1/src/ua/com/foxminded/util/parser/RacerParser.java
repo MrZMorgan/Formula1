@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class CustomParser implements Parser {
+public class RacerParser implements Parser {
 
     public static final Pattern RACER_ABBREVIATION = Pattern.compile("^[A-Z]{3}");
     public static final Pattern FULL_NAME = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");

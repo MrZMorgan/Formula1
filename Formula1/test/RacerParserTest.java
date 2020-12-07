@@ -1,17 +1,17 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.racer.Racer;
-import ua.com.foxminded.util.parser.CustomParser;
-import static ua.com.foxminded.util.parser.CustomParser.*;
+import ua.com.foxminded.util.parser.RacerParser;
+import static ua.com.foxminded.util.parser.RacerParser.*;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomParserTest {
+class RacerParserTest {
 
-    private CustomParser parser;
+    private RacerParser parser;
 
     private static final String INPUT_STRING_FOR_PARSE_LINE = "DRR_Daniel Ricciardo_RED BULL RACING TAG HEUER";
     private static final String EXPECTED_TEAM_NAME = "RED BULL RACING TAG HEUER";
@@ -22,7 +22,7 @@ class CustomParserTest {
 
     @BeforeEach
     void setUp() {
-        parser = new CustomParser();
+        parser = new RacerParser();
     }
 
     @Test

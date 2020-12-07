@@ -6,8 +6,8 @@ import ua.com.foxminded.interfaces.Formatter;
 import ua.com.foxminded.interfaces.Parser;
 import ua.com.foxminded.interfaces.Reader;
 import ua.com.foxminded.racer.Racer;
-import ua.com.foxminded.util.parser.CustomParser;
-import ua.com.foxminded.util.reader.CustomReader;
+import ua.com.foxminded.util.parser.RacerParser;
+import ua.com.foxminded.util.reader.RacerReader;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,8 +30,8 @@ class RaceFacadeTest {
     @BeforeEach
     void setUp() throws ParseException {
         formatterMock = mock(Formatter.class);
-        readerMock = mock(CustomReader.class);
-        parserMock = mock(CustomParser.class);
+        readerMock = mock(RacerReader.class);
+        parserMock = mock(RacerParser.class);
         facade = new RaceFacade(formatterMock, readerMock, parserMock);
         racers = createListOfRacersForTest();
         start = lineFromStartLog();

@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.interfaces.Reader;
-import ua.com.foxminded.util.reader.CustomReader;
+import ua.com.foxminded.util.reader.RacerReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomReaderTest {
+class RacerReaderTest {
 
     private Reader reader;
 
@@ -20,7 +20,7 @@ class CustomReaderTest {
         expectedLines = Files.lines(Paths.get("test/filesfortests/end.log"))
                 .collect(Collectors.toList());
 
-        reader = new CustomReader();
+        reader = new RacerReader();
     }
 
     @Test

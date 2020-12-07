@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CustomReader implements Reader {
+public class RacerReader implements Reader {
 
     @Override
     public List<String> read(String filename) {
